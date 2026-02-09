@@ -18,6 +18,7 @@ brain/
 ├── git/
 │   ├── personal/           # Personal GitHub identity
 │   │   ├── agent-instructions/  # THIS REPO - skills, tools, guidance
+│   │   │   └── .cursor/skills/  # Canonical skill definitions
 │   │   └── ...
 │   └── work/               # Work GitHub identity
 │       └── ...
@@ -25,7 +26,30 @@ brain/
 │   ├── Timatron/           # Main vault (daily notes, GTD, journals)
 │   └── ...
 ├── .cursorrules            # Thin pointer → this file
-└── CLAUDE.md               # Thin pointer → this file
+├── CLAUDE.md               # Thin pointer → this file
+├── .cursor/skills/         # Symlink → agent-instructions/.cursor/skills/
+└── .claude/skills/         # Symlink → agent-instructions/.cursor/skills/
+```
+
+## Skill discovery (symlinks)
+
+Skills are defined canonically in `git/personal/agent-instructions/.cursor/skills/`. But Cursor and Claude Code discover skills from the **workspace root**, not from nested repos:
+
+- **Cursor** looks for skills in `<workspace>/.cursor/skills/`
+- **Claude Code** looks for skills in `<workspace>/.claude/skills/`
+
+Since `~/brain` is the workspace root, the setup script (`setup.sh`) creates symlinks so both tools find the skills automatically:
+
+```
+~/brain/.cursor/skills  →  ~/brain/git/personal/agent-instructions/.cursor/skills
+~/brain/.claude/skills  →  ~/brain/git/personal/agent-instructions/.cursor/skills
+```
+
+Both symlinks point to the **same source** — skills are authored once and discovered by both tools. If the symlinks break (e.g., after a fresh clone), re-run:
+
+```bash
+cd ~/brain/git/personal/agent-instructions
+./setup.sh
 ```
 
 ## Git identities
