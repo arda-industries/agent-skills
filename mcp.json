@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "asana": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.asana.com/sse"
+      ]
+    },
+    "miro-mcp": {
+      "url": "https://mcp.miro.com/",
+      "disabled": false,
+      "autoApprove": []
+    },
+    "vercel": {
+      "url": "https://mcp.vercel.com"
+    },
+    "TalkToFigma": {
+      "command": "bun",
+      "args": [
+        "/Users/audaciousaspen/brain/git/personal/cursor-talk-to-figma-mcp/src/talk_to_figma_mcp/server.ts"
+      ],
+      "disabled": false
+    },
+    "Notion": {
+      "url": "https://mcp.notion.com/mcp"
+    }
+  }
+}
